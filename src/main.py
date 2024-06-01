@@ -7,6 +7,8 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox, QApplication
 from PyQt6.QtCore import QTimer, QTime, Qt
 from PyQt6.QtGui import QPixmap
 
+from playsound import playsound
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -19,7 +21,7 @@ class MainWindow(QMainWindow):
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_timer)
-        self.remaining_time = QTime(0, 0, 1)  # 20 minutes
+        self.remaining_time = QTime(0, 20, 0)  # 20 minutes
 
     def mode(self):
         if self.night_mode.isChecked():
@@ -37,12 +39,13 @@ class MainWindow(QMainWindow):
         if self.remaining_time == QTime(0, 0, 0):
             self.timer.stop()
             self.timer_label.setText("Time's up! Rest :)")
-
+            if self.sound_button.isChecked():
+                self.play_sound()
             if self.visual_button.isChecked():
                 self.show_popup()
-            
-            #if self.sound_button.isChecked():
-                #self.play_sound() # todo fix this
+    
+    def play_sound(self):
+        playsound("./sound/notification.mp3")
     
     def show_popup(self):
         # Get the screen resolution
