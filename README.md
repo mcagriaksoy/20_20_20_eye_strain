@@ -1,4 +1,4 @@
-# 20_20_20_eye_strain
+# Reduce your eye strain with 20 20 20 Method!
 A useful application to apply 20 20 20 method for reduce your eye strain!
 
 The 20-20-20 application is a highly beneficial tool designed to help mitigate eye strain, a common issue for individuals who spend significant time in front of screens. The application implements the 20-20-20 rule, a widely recommended approach by eye care professionals for reducing eye strain. The rule suggests that every 20 minutes, you should take a break and look at something 20 feet away for 20 seconds. Our application assists in this process by providing timely reminders to take these crucial breaks, helping to protect your eyes and enhance your overall eye health.
