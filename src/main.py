@@ -6,8 +6,12 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QMessageBox, QApplication
 from PyQt6.QtCore import QTimer, QTime, Qt
 from PyQt6.QtGui import QPixmap
+import platform
 
-from playsound import playsound
+if platform.system() == "Windows":
+    import winsound
+elif platform.system() == "Darwin" or platform.system() == "Linux":
+    import os
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -45,7 +49,10 @@ class MainWindow(QMainWindow):
                 self.show_popup()
     
     def play_sound(self):
-        playsound("./sound/notification.mp3")
+        if platform.system() == "Windows":
+            winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS)
+        elif platform.system() == "Darwin" or platform.system() == "Linux":
+            os.system('play -n synth 0.1 sine 660')
     
     def show_popup(self):
         # Get the screen resolution
@@ -63,8 +70,6 @@ class MainWindow(QMainWindow):
         
         # Set an image to the popup
         msg.setIconPixmap(QPixmap("./img/eye.png"))
-
-        #msg.setIcon(QMessageBox.Icon.Information)
 
         # Get the message box size
         msg_box_size = msg.sizeHint()
