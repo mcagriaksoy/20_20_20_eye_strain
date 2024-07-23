@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         uic.loadUi("main.ui", self)
         self.show()
+        self.stop_button.setEnabled(False)
         self.night_mode.toggled.connect(self.mode)
         self.start_button.clicked.connect(self.start_timer)
         self.stop_button.clicked.connect(self.stop_timer)
@@ -29,11 +30,52 @@ class MainWindow(QMainWindow):
 
     def mode(self):
         if self.night_mode.isChecked():
-            self.setStyleSheet("background-color: black; color: white")
+            self.setStyleSheet("background-color: black")
+            self.timer_label.setStyleSheet("color: white")
+            # Set pixmap at label_3
+            self.label_3.setPixmap(QPixmap("./img/rule-inverted.jpg"))
+            #Change button colors
+            self.start_button.setStyleSheet("background-color: #888; color: white")
+            self.stop_button.setStyleSheet("background-color: #888; color: white")
+            self.reset_button.setStyleSheet("background-color: #888; color: white")
+
+            # Change label_2 text color
+            self.label_2.setStyleSheet("color: white")
+
+            # Change timer text color
+            self.timer_label.setStyleSheet("color: white")
+
+            self.night_mode.setStyleSheet("color: white")
+            self.visual_button.setStyleSheet("color: white")
+            self.sound_button.setStyleSheet("color: white")
+
+            # Change the windows ui frame color
+
+
         else:
-            self.setStyleSheet("background-color: white; color: black") # todo fix this
+            self.setStyleSheet("background-color: white; color: black")
+            self.timer_label.setStyleSheet("color: black")
+            # Set pixmap at label_3
+            self.label_3.setPixmap(QPixmap("./img/rule.jpg"))
+            #Change button colors
+            self.start_button.setStyleSheet("background-color: white; color: black")
+            self.stop_button.setStyleSheet("background-color: white; color: black")
+            self.reset_button.setStyleSheet("background-color: white; color: black")
+
+            # Change label_2 text color
+            self.label_2.setStyleSheet("color: black")
+
+            # Change timer text color
+            self.timer_label.setStyleSheet("color: black")
+
+            self.night_mode.setStyleSheet("color: black")
+            self.visual_button.setStyleSheet("color: black")
+            self.sound_button.setStyleSheet("color: black")
     
+
     def start_timer(self):
+        self.stop_button.setEnabled(True)
+        self.start_button.setEnabled(False)
         self.timer.start(1000)  # start timer, 1 tick per second
     
     def update_timer(self):
@@ -91,11 +133,14 @@ class MainWindow(QMainWindow):
         msg.exec()
         
     def reset_timer(self):
+        self.start_button.setEnabled(True)
         self.remaining_time = QTime(0, 20, 0)
         self.timer_label.setText(self.remaining_time.toString())
         self.start_timer()
 
     def stop_timer(self):
+        self.start_button.setEnabled(True)
+        self.stop_button.setEnabled(False)
         self.timer.stop()
 
 if __name__ == "__main__":
