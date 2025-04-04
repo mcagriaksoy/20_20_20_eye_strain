@@ -1,6 +1,6 @@
 # A useful application to apply 20 20 20 method for reduce your eye strain!
-# Author: Mehmet Cagri Aksoy - 2024
-# Version: 1.0
+# Author: Mehmet Cagri Aksoy - 2024-2025
+# Version: 1.1
 
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QMessageBox, QApplication
@@ -16,7 +16,7 @@ elif platform.system() == "Darwin" or platform.system() == "Linux":
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("main.ui", self)
+        uic.loadUi("mainWindow.ui", self)
         self.show()
         self.stop_button.setEnabled(False)
         self.night_mode.toggled.connect(self.mode)
@@ -50,8 +50,6 @@ class MainWindow(QMainWindow):
             self.sound_button.setStyleSheet("color: white")
 
             # Change the windows ui frame color
-
-
         else:
             self.setStyleSheet("background-color: white; color: black")
             self.timer_label.setStyleSheet("color: black")
