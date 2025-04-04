@@ -1,0 +1,7 @@
+{
+    "files": [
+        "mainwindow.py",
+        "mainwindow.ui",
+        "resources.qrc"
+    ]
+}
