@@ -2,21 +2,46 @@
 # Author: Mehmet Cagri Aksoy - 2024-2025
 # Version: 1.1
 
-from PyQt6 import uic
-from PyQt6.QtWidgets import QMainWindow, QMessageBox, QApplication
-from PyQt6.QtCore import QTimer, QTime, Qt
-from PyQt6.QtGui import QPixmap
+from PySide6 import QtUiTools
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QApplication
+from PySide6.QtCore import QTimer, QTime, Qt
+from PySide6.QtGui import QPixmap
 import platform
 
 if platform.system() == "Windows":
-    import winsound
+    import winsound, winreg
 elif platform.system() == "Darwin" or platform.system() == "Linux":
     import os
+
+def is_windows_dark_mode(self):
+    try:
+        registry = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER)
+        registry_key = winreg.OpenKey(registry, r'Software\Microsoft\Windows\CurrentVersion\Themes\Personalize')
+        value, _ = winreg.QueryValueEx(registry_key, 'AppsUseLightTheme')
+        return value == 0  # 0 means dark mode is enabled
+    except WindowsError:
+        return False
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("mainWindow.ui", self)
+        ui_file = QtUiTools.QUiLoader().load("mainWindow.ui")
+        self.setCentralWidget(ui_file)
+        self.stop_button = ui_file.stop_button
+        self.night_mode = ui_file.night_mode
+        self.start_button = ui_file.start_button
+        self.reset_button = ui_file.reset_button
+        self.timer_label = ui_file.timer_label
+        self.label_2 = ui_file.label_2
+        self.label_3 = ui_file.label_3
+        self.visual_button = ui_file.visual_button
+        self.sound_button = ui_file.sound_button
+
+        self.setWindowTitle("20 20 20 Eye Strain Relief")
+        if is_windows_dark_mode(self):
+            # Toggle night mode on startup if Windows is in dark mode
+            self.night_mode.setChecked(True)
+            self.mode()
         self.show()
         self.stop_button.setEnabled(False)
         self.night_mode.toggled.connect(self.mode)
@@ -30,10 +55,13 @@ class MainWindow(QMainWindow):
 
     def mode(self):
         if self.night_mode.isChecked():
-            self.setStyleSheet("background-color: black")
+            self.setStyleSheet("background-color: #333; color: white")
             self.timer_label.setStyleSheet("color: white")
-            # Set pixmap at label_3
-            self.label_3.setPixmap(QPixmap("./img/rule-inverted.jpg"))
+            # Set pixmap at label_3 with transparency support
+            pixmap = QPixmap("./img/rule-inverted.jpg")
+            pixmap.setDevicePixelRatio(self.devicePixelRatio())
+            self.label_3.setPixmap(pixmap)
+            self.label_3.setAttribute(Qt.WA_TranslucentBackground)
             #Change button colors
             self.start_button.setStyleSheet("background-color: #888; color: white")
             self.stop_button.setStyleSheet("background-color: #888; color: white")
@@ -53,8 +81,11 @@ class MainWindow(QMainWindow):
         else:
             self.setStyleSheet("background-color: white; color: black")
             self.timer_label.setStyleSheet("color: black")
-            # Set pixmap at label_3
-            self.label_3.setPixmap(QPixmap("./img/rule.jpg"))
+            # Set pixmap at label_3 with transparency support
+            pixmap = QPixmap("./img/rule.jpg")
+            pixmap.setDevicePixelRatio(self.devicePixelRatio())
+            self.label_3.setPixmap(pixmap)
+            self.label_3.setAttribute(Qt.WA_TranslucentBackground)
             #Change button colors
             self.start_button.setStyleSheet("background-color: white; color: black")
             self.stop_button.setStyleSheet("background-color: white; color: black")
@@ -102,9 +133,9 @@ class MainWindow(QMainWindow):
 
         msg = QMessageBox()
         # Make borderless
-        msg.setWindowFlag(Qt.WindowType.FramelessWindowHint)
+        msg.setWindowFlag(Qt.FramelessWindowHint)
         # Make the message box stay on top
-        msg.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
+        msg.setWindowFlag(Qt.WindowStaysOnTopHint)
 
         msg.setText("Hey there! Time for a break!\r\nTime's UP! Please focus on something 20 feet / 6 meters away for 20 seconds.")
         
