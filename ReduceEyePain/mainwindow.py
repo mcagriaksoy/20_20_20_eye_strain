@@ -3,9 +3,9 @@
 # Version: 1.1
 
 from PySide6 import QtUiTools
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QApplication
-from PySide6.QtCore import QTimer, QTime, Qt
-from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QApplication, QSystemTrayIcon, QMenu
+from PySide6.QtCore import QTimer, QTime, Qt, QEvent
+from PySide6.QtGui import QPixmap, QIcon, QCloseEvent
 import platform
 
 if platform.system() == "Windows":
@@ -53,6 +53,17 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.update_timer)
         self.remaining_time = QTime(0, 20, 0)  # 20 minutes
 
+        self.tray_icon = QSystemTrayIcon(self)
+        self.tray_icon.setIcon(QIcon("./img/eye.png"))
+        tray_menu = QMenu()
+        show_action = tray_menu.addAction("Show")
+        exit_action = tray_menu.addAction("Exit")
+        show_action.triggered.connect(self.show_window)
+        exit_action.triggered.connect(QApplication.instance().quit)
+        self.tray_icon.setContextMenu(tray_menu)
+        self.tray_icon.activated.connect(self.on_tray_icon_activated)
+        self.tray_icon.show()
+    
     def mode(self):
         if self.night_mode.isChecked():
             self.setStyleSheet("background-color: #333; color: white")
@@ -171,6 +182,30 @@ class MainWindow(QMainWindow):
         self.start_button.setEnabled(True)
         self.stop_button.setEnabled(False)
         self.timer.stop()
+
+    def changeEvent(self, event):
+        if event.type() == QEvent.WindowStateChange:
+            if self.isMinimized():
+                QTimer.singleShot(0, self.hide)
+                self.tray_icon.showMessage(
+                    "20 20 20 Eye Strain Relief",
+                    "App is running in the background.",
+                    QSystemTrayIcon.Information,
+                    2000
+                )
+        super().changeEvent(event)
+
+    def show_window(self):
+        self.showNormal()
+        self.activateWindow()
+
+    def on_tray_icon_activated(self, reason):
+        if reason == QSystemTrayIcon.DoubleClick:
+            self.show_window()
+
+    def closeEvent(self, event: QCloseEvent):
+        self.tray_icon.hide()
+        event.accept()
 
 if __name__ == "__main__":
     app = QApplication([])
