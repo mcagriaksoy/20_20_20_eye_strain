@@ -1,0 +1,28 @@
+VSVersionInfo(
+ffi=FixedFileInfo(
+filevers=(1, 3, 0, 0),
+prodvers=(1, 3, 0, 0),
+mask=0x3f,
+flags=0x0,
+OS=0x4,
+fileType=0x1,
+subtype=0x0,
+date=(0, 0)
+),
+kids=[
+StringFileInfo(
+[
+StringTable(
+'040904B0',
+[StringStruct('CompanyName', 'Mehmet Cagri Aksoy'),
+StringStruct('FileDescription', 'Reduce Eye Strain App'),
+StringStruct('FileVersion', '1.3.0.0'),
+StringStruct('InternalName', 'Reduce Eye Strain App'),
+StringStruct('LegalCopyright', '© MCagriAksoy. All rights reserved.'),
+StringStruct('OriginalFilename', 'Reduce_Eye_Pain_v1.3.exe'),
+StringStruct('ProductName', 'Reduce Eye Strain App'),
+StringStruct('ProductVersion', '1.3.0.0')])
+]),
+VarFileInfo([VarStruct('Translation', [1033, 1200])])
+]
+)
