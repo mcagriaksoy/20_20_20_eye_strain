@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>20-20-20 Eye Strain Reminder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 16px;
+      width: 240px;
+      background: #f7f9fa;
+      color: #222;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #ruleImg {
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    button {
+      margin-top: 12px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      background: #4f8cff;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    button:hover {
+      background: #357ae8;
+    }
+    #settingsBtn {
+      background: #f1c40f;
+      color: #222;
+      margin-left: 0;
+      margin-top: 8px;
+      font-size: 0.95em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #timerContainer {
+      margin: 14px 0 8px 0;
+      font-size: 1.1em;
+      background: #eaf1fb;
+      padding: 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #remaining {
+      font-weight: bold;
+      color: #357ae8;
+      font-size: 1.15em;
+    }
+    #settings {
+      background: #fffbe6;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    input[type="number"] {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      padding: 2px 6px;
+      font-size: 1em;
+      width: 50px;
+    }
+    input[type="checkbox"] {
+      accent-color: #4f8cff;
+    }
+    #infoPopup {
+      display: none;
+      position: absolute;
+      top: 48px;
+      left: 24px;
+      z-index: 10;
+      background: #fffbe6;
+      color: #222;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      width: 220px;
+      font-size: 0.98em;
+    }
+  </style>
+</head>
+<body>
+  <h2><span>👁️</span> 20-20-20 Rule <button id="infoBtn" title="What is this?" style="background:none;border:none;padding:0;margin-left:4px;font-size:1.1em;cursor:pointer;">❓</button></h2>
+  <div id="infoPopup" style="display:none;position:absolute;top:48px;left:24px;z-index:10;background:#fffbe6;color:#222;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);width:220px;font-size:0.98em;">
+    <b>Reduce Eye Strain with the 20-20-20 Rule</b><br>
+    Spending a lot of time in front of a screen? Try this simple trick to keep your eyes feeling fresh:<br><br>
+    <b>Every 20 minutes</b>, take a break from your screen.<br>
+    <b>Look at something 20 feet away</b> for at least <b>20 seconds</b>.<br><br>
+    This quick habit helps relax your eye muscles, reduces strain, and gives your brain a well-earned pause. Keep your eyes happy and refreshed! 👀✨<br><br>
+    <hr style="margin:8px 0;">
+    <span style="font-size:0.9em;color:#888;">© Written by mcagriaksoy 2025<br>
+    <a href="https://github.com/mcagriaksoy" target="_blank" style="color:#357ae8;text-decoration:none;">github.com/mcagriaksoy</a></span>
+    <br>
+    <button id="closeInfo" style="background:#4f8cff;color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;margin-top:6px;">Close</button>
+  </div>
+  <img id="ruleImg" src="img/rule.jpg" alt="20-20-20 Rule" />
+  <p>Every 20 minutes, look at something 20 feet away for 20 seconds.</p>
+  <button id="start"><span>⏰</span> Start Reminder</button>
+  <div id="status"></div>
+  <div id="timerContainer">
+    <span>Next break in: <span id="remaining">Not Started</span></span>
+  </div>
+  <button id="settingsBtn"><span>⚙️</span> Settings</button>
+  <div id="settings" style="display:none;">
+    <label><span>⏱️</span> Timer (minutes): <input type="number" id="timerInput" min="1" value="20" /></label>
+    <label><input type="checkbox" id="visualNotif" checked /> <span>🔔</span> Visual Notification</label>
+    <label><input type="checkbox" id="soundNotif" /> <span>🔊</span> Sound Notification</label>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
