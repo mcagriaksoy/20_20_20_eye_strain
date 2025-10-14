@@ -1,6 +1,6 @@
 # Take Care of Your Eyes
 
-We all spend a lot of time looking at screens—phones, computers, TVs. This can make our eyes tired and sore. The 20-20-20 app helps you rest your eyes with a simple rule: Every 20 minutes, look at something 20 feet (6 meters) away for 20 seconds.
+We all spend a lot of time looking at screens, phones, computers, TVs. This can make our eyes tired and sore. The 20-20-20 app helps you rest your eyes with a simple rule: Every 20 minutes, look at something 20 feet (6 meters) away for 20 seconds.
 
 ![Promotion Banner](img/Promo.png)
 
