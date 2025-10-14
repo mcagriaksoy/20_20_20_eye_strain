@@ -1,14 +1,5 @@
-let timer = 20 * 60; // seconds
-let intervalId = null;
-let countdownId = null;
-let visualEnabled = true;
-let soundEnabled = false;
-
-function updateRemaining() {
-  const min = Math.floor(timer / 60);
-  const sec = timer % 60;
-  document.getElementById('remaining').textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-}
+// Author: github.com/mcagriaksoy
+// 20-20-20 Eye Strain Reminder Chrome Extension
 
 document.addEventListener('DOMContentLoaded', function() {
   // Switch image based on theme
@@ -47,55 +38,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Simple timer logic
-  function startTimer() {
+  // Connect to background service worker
+  const port = chrome.runtime.connect();
+  port.onMessage.addListener((msg) => {
+    const { timeLeft, isRunning } = msg;
+    const remainingEl = document.getElementById('remaining');
+    if (isRunning) {
+      const min = Math.floor(timeLeft / 60);
+      const sec = timeLeft % 60;
+      remainingEl.textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    } else {
+      remainingEl.textContent = 'Not Started';
+    }
+    // Update button visibility
+    const startBtn = document.getElementById('start');
+    const stopBtn = document.getElementById('stop');
+    if (isRunning) {
+      startBtn.style.display = 'none';
+      stopBtn.style.display = 'inline-block';
+    } else {
+      startBtn.style.display = 'inline-block';
+      stopBtn.style.display = 'none';
+    }
+  });
+
+  // Start reminder
+  document.getElementById('start').addEventListener('click', () => {
     const duration = parseInt(document.getElementById('timerInput').value);
-    
-    // Guard against invalid timer values
     if (!duration || duration <= 0) {
       document.getElementById('status').textContent = 'Please enter a valid timer duration (1 minute or more)';
       document.getElementById('status').style.color = '#e74c3c';
       return;
     }
-    
-    document.getElementById('status').textContent = 'Reminder started!';
-    document.getElementById('status').style.color = '#27ae60';
-    timer = duration * 60;
-    visualEnabled = document.getElementById('visualNotif').checked;
-    soundEnabled = document.getElementById('soundNotif').checked;
-    
-    updateRemaining();
-    
-    if (countdownId) clearInterval(countdownId);
-    if (intervalId) clearInterval(intervalId);
-    
-    // Update display every second
-    countdownId = setInterval(() => {
-      if (timer > 0) {
-        timer--;
-        updateRemaining();
+    chrome.runtime.sendMessage({
+      action: 'start',
+      duration,
+      visual: document.getElementById('visualNotif').checked
+    }, (response) => {
+      if (response && response.error) {
+        document.getElementById('status').textContent = response.error;
+        document.getElementById('status').style.color = '#e74c3c';
+      } else {
+        document.getElementById('status').textContent = 'Reminder started!';
+        document.getElementById('status').style.color = '#27ae60';
       }
-    }, 1000);
-    
-    // Show notification every interval
-    intervalId = setInterval(() => {
-      if (visualEnabled) {
-        chrome.notifications.create({
-          type: 'basic',
-          iconUrl: 'img/icon128.png',
-          title: '20-20-20 Eye Strain Reminder',
-          message: 'Time to take a 20-second break and look at something 20 feet away!'
-        });
+    });
+  });
+
+  // Stop reminder
+  document.getElementById('stop').addEventListener('click', () => {
+    chrome.runtime.sendMessage({ action: 'stop' }, (response) => {
+      if (response.stopped) {
+        document.getElementById('status').textContent = 'Reminder stopped.';
+        document.getElementById('status').style.color = '#e74c3c';
       }
-      if (soundEnabled) {
-        // Create audio each time to avoid issues
-        const audio = new Audio('img/notification.mp3');
-        audio.play().catch(e => console.log('Audio play failed:', e));
-      }
-      timer = duration * 60;
-      updateRemaining();
-    }, duration * 60 * 1000);
-  }
-  
-  document.getElementById('start').addEventListener('click', startTimer);
+    });
+  });
 });

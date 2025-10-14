@@ -106,12 +106,12 @@
   </style>
 </head>
 <body>
-  <h2><span>👁️</span> 20-20-20 Rule <button id="infoBtn" title="What is this?" style="background:none;border:none;padding:0;margin-left:4px;font-size:1.1em;cursor:pointer;">❓</button></h2>
-  <div id="infoPopup" style="display:none;position:absolute;top:48px;left:24px;z-index:10;background:#fffbe6;color:#222;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);width:220px;font-size:0.98em;">
+  <h2>Reduce Your Eye Strain with 20-20-20 Rule <button id="infoBtn" title="What is this?" style="background:none;border:none;padding:0;margin-left:4px;font-size:1.1em;cursor:pointer;">❓</button></h2>
+  <div id="infoPopup">
     <b>Reduce Eye Strain with the 20-20-20 Rule</b><br>
     Spending a lot of time in front of a screen? Try this simple trick to keep your eyes feeling fresh:<br><br>
     <b>Every 20 minutes</b>, take a break from your screen.<br>
-    <b>Look at something 20 feet away</b> for at least <b>20 seconds</b>.<br><br>
+    <b>Look at something 20 feet (6 meters) away</b> for at least <b>20 seconds</b>.<br><br>
     This quick habit helps relax your eye muscles, reduces strain, and gives your brain a well-earned pause. Keep your eyes happy and refreshed! 👀✨<br><br>
     <hr style="margin:8px 0;">
     <span style="font-size:0.9em;color:#888;">© Written by mcagriaksoy 2025<br>
@@ -120,8 +120,9 @@
     <button id="closeInfo" style="background:#4f8cff;color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;margin-top:6px;">Close</button>
   </div>
   <img id="ruleImg" src="img/rule.jpg" alt="20-20-20 Rule" />
-  <p>Every 20 minutes, look at something 20 feet away for 20 seconds.</p>
+  <p>Every 20 minutes, look at something 20 feet (6 meters) away for 20 seconds.</p>
   <button id="start"><span>⏰</span> Start Reminder</button>
+  <button id="stop" style="display:none;"><span>⏹️</span> Stop Reminder</button>
   <div id="status"></div>
   <div id="timerContainer">
     <span>Next break in: <span id="remaining">Not Started</span></span>
@@ -130,7 +131,6 @@
   <div id="settings" style="display:none;">
     <label><span>⏱️</span> Timer (minutes): <input type="number" id="timerInput" min="1" value="20" /></label>
     <label><input type="checkbox" id="visualNotif" checked /> <span>🔔</span> Visual Notification</label>
-    <label><input type="checkbox" id="soundNotif" /> <span>🔊</span> Sound Notification</label>
   </div>
   <script src="popup.js"></script>
 </body>

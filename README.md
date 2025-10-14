@@ -10,6 +10,8 @@ Both implementations follow the 20-20-20 rule, a widely recommended approach by 
 # Note
 The application is currently development phase.
 
+See our Privacy Policy for details on data handling and permissions: [Privacy Policy](ChromiumExtension/PRIVACY.md)
+
 <a href="https://github.com/mcagriaksoy/20_20_20_eye_strain/releases/"><img src="https://img.shields.io/github/tag/mcagriaksoy/20_20_20_eye_strain?include_prereleases=&sort=semver&color=blue" alt="Version"></a>
 
 # Usage
@@ -78,3 +80,6 @@ python main.py
 
 [![PyQt - >= 6.0](https://img.shields.io/badge/PyQt->_6.0-2ea44f)](https://wiki.python.org/moin/PyQt)
 [![PyQt_sip - >= 13.0](https://img.shields.io/badge/PyQt_sip->_13.0-2ea44f)](https://pypi.org/project/PyQt6-sip/)
+
+# Privacy Policy
+A brief Privacy Policy is available in the repository: [ChromiumExtension/PRIVACY.md](ChromiumExtension/PRIVACY.md). It explains what information the desktop app and the Chromium extension may access, how that data is used, and the permissions required by the extension. Please review it before installing or using the extension.
