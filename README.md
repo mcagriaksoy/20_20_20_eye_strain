@@ -1,14 +1,43 @@
-# Reduce your eye strain with 20 20 20 Method!
-A useful application to apply 20 20 20 method for reduce your eye strain!
+# Take Care of Your Eyes
 
-The 20-20-20 application is available in two versions:
-1. **Python Desktop Application** - A standalone desktop application for Windows and Linux
-2. **Chromium Browser Extension** - A lightweight browser extension for Chrome, Edge, and other Chromium-based browsers
+We all spend a lot of time looking at screens—phones, computers, TVs. This can make our eyes tired and sore. The 20-20-20 app helps you rest your eyes with a simple rule: Every 20 minutes, look at something 20 feet (6 meters) away for 20 seconds.
 
-Both implementations follow the 20-20-20 rule, a widely recommended approach by eye care professionals for reducing eye strain. The rule suggests that every 20 minutes, you should take a break and look at something 20 feet away for 20 seconds. Our applications assist in this process by providing timely reminders to take these crucial breaks, helping to protect your eyes and enhance your overall eye health.
+![Promotion Banner](img/Promo.png)
+
+App Specifications
+
+Friendly Reminders: It gently tells you when it’s time to take a break.
+
+Flexible Timing: You can change how often it reminds you, so it fits your day—great for students, workers, and gamers.
+
+Whether you're working, studying, or watching shows, the 20-20-20 app is a helpful little reminder to give your eyes a rest and keep them healthy.
+
+It is available in two simple forms:
+- Desktop app (Windows, Linux)
+- Chromium browser extension (Chrome, Edge, etc.)
+
+What it does
+- Runs a timer and reminds you to take breaks.
+- Shows popups or browser notifications.
+- Can play a short sound if you want.
+
+Desktop app (quick)
+- Local timer, runs on your computer.
+- Start, pause and stop controls.
+- Default: 20‑minute work, 20‑second break.
+- Settings stay on your device.
+
+Browser extension (quick)
+- Small popup in the browser toolbar.
+- Change interval, break time and notifications.
+- Uses browser notifications and local storage.
+- Only asks for necessary permissions (notifications, storage).
+
+Privacy and permissions
+- Desktop app: runs locally and does not send data by default.
+- Extension: stores your settings locally and only requests needed permissions. See the Privacy Policy: [Privacy Policy](ChromiumExtension/PRIVACY.md)
 
 # Note
-The application is currently development phase.
 
 See our Privacy Policy for details on data handling and permissions: [Privacy Policy](ChromiumExtension/PRIVACY.md)
 
@@ -43,7 +72,8 @@ See our Privacy Policy for details on data handling and permissions: [Privacy Po
 
 # Chromium Based browser UI
 ![Screenshot](img/chromium_extension.jpg)
-
+![Screenshot](img/chromium_extension_screenshot1.jpg)
+![Screenshot](img/chromium_extension_screenshot2.jpg)
 # Installation
 
 ## Python Desktop Application
@@ -68,18 +98,3 @@ python main.py
 
 ## Python Desktop Application
 [![OS - Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux&logoColor=white)](https://www.linux.org/ "Go to Linux homepage")
-[![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://www.microsoft.com/ "Go to Microsoft homepage")
-
-## Chromium Browser Extension
-[![Browser - Chrome](https://img.shields.io/badge/Browser-Chrome-blue?logo=googlechrome&logoColor=white)](https://www.google.com/chrome/ "Go to Chrome homepage")
-[![Browser - Edge](https://img.shields.io/badge/Browser-Edge-blue?logo=microsoftedge&logoColor=white)](https://www.microsoft.com/edge/ "Go to Edge homepage")
-[![Browser - Chromium](https://img.shields.io/badge/Browser-Chromium-blue?logo=googlechrome&logoColor=white)](https://www.chromium.org/ "Go to Chromium homepage")
-
-
-# Dependencies
-
-[![PyQt - >= 6.0](https://img.shields.io/badge/PyQt->_6.0-2ea44f)](https://wiki.python.org/moin/PyQt)
-[![PyQt_sip - >= 13.0](https://img.shields.io/badge/PyQt_sip->_13.0-2ea44f)](https://pypi.org/project/PyQt6-sip/)
-
-# Privacy Policy
-A brief Privacy Policy is available in the repository: [ChromiumExtension/PRIVACY.md](ChromiumExtension/PRIVACY.md). It explains what information the desktop app and the Chromium extension may access, how that data is used, and the permissions required by the extension. Please review it before installing or using the extension.
