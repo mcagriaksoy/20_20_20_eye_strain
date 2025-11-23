@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20-20-20 Eye Strain Reminder</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #333; }
+        .container { max-width: 800px; margin: auto; }
+        img { max-width: 100%; height: auto; }
+        .section { margin-bottom: 40px; }
+        .badge { background: #007bff; color: white; padding: 5px 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Take Care of Your Eyes</h1>
+        <p>We all spend a lot of time looking at screens, phones, computers, TVs. This can make our eyes tired and sore. The 20-20-20 app helps you rest your eyes with a simple rule: Every 20 minutes, look at something 20 feet (6 meters) away for 20 seconds.</p>
+        <img src="../img/Promo.png" alt="Promotion Banner">
+
+        <h2>App Specifications</h2>
+        <p>Friendly Reminders: It gently tells you when it's time to take a break.</p>
+        <p>Flexible Timing: You can change how often it reminds you, so it fits your day—great for students, workers, and gamers.</p>
+        <p>Whether you're working, studying, or watching shows, the 20-20-20 app is a helpful little reminder to give your eyes a rest and keep them healthy.</p>
+
+        <p>It is available in two simple forms:</p>
+        <ul>
+            <li>Desktop app (Windows, Linux)</li>
+            <li>Chromium browser extension (Chrome, Edge, etc.)</li>
+        </ul>
+
+        <h2>What it does</h2>
+        <ul>
+            <li>Runs a timer and reminds you to take breaks.</li>
+            <li>Shows popups or browser notifications.</li>
+            <li>Can play a short sound if you want.</li>
+        </ul>
+
+        <div class="section">
+            <h2>Desktop App</h2>
+            <p>Local timer, runs on your computer.</p>
+            <ul>
+                <li>Start, pause and stop controls.</li>
+                <li>Default: 20-minute work, 20-second break.</li>
+                <li>Settings stay on your device.</li>
+            </ul>
+            <h3>Usage</h3>
+            <ol>
+                <li>Start timer and observe the 20 minute timer has been started.</li>
+                <li>In background it counts down till the 20 minute is passed.</li>
+                <li>The program displays a popup or notification to remind break time! You need to focus at least 6 meters away to reduce your eye strain for at least 20 seconds.</li>
+                <li>After 20 seconds the popup will be closed and 20 minute timer starts again.</li>
+            </ol>
+            <h3>Installation</h3>
+            <p>Simply run python source code or call the executable.</p>
+            <pre><code>python main.py</code></pre>
+            <p><span class="badge">OS - Linux</span></p>
+            <img src="../img/Screenshot.jpg" alt="Windows App UI">
+        </div>
+
+        <div class="section">
+            <h2>Chromium Browser Extension</h2>
+            <p>Small popup in the browser toolbar.</p>
+            <ul>
+                <li>Change interval, break time and notifications.</li>
+                <li>Uses browser notifications and local storage.</li>
+                <li>Only asks for necessary permissions (notifications, storage).</li>
+            </ul>
+            <h3>Usage</h3>
+            <ol>
+                <li>Click on the extension icon in your browser toolbar to open the popup.</li>
+                <li>Customize your timer duration (default: 20 minutes) and notification preferences in the Settings panel.</li>
+                <li>Click "Start Reminder" to begin the countdown timer.</li>
+                <li>The extension will show Chrome notifications and/or play sound alerts when it's time for your break.</li>
+                <li>Take a 20-second break looking at something 20 feet away, then the timer automatically restarts.</li>
+            </ol>
+            <h3>Features</h3>
+            <ul>
+                <li>🔔 Visual notifications (Chrome notifications)</li>
+                <li>🔊 Sound notifications (optional)</li>
+                <li>⚙️ Customizable timer duration</li>
+                <li>👁️ Real-time countdown display</li>
+                <li>📱 Responsive popup interface</li>
+                <li>🌓 Theme-aware design</li>
+            </ul>
+            <h3>Installation</h3>
+            <ol>
+                <li>Download the extension folder from the <code>ChromiumExtension</code> directory</li>
+                <li>Open Chrome and go to <code>chrome://extensions/</code></li>
+                <li>Enable "Developer mode" (toggle in top right)</li>
+                <li>Click "Load unpacked" and select the ChromiumExtension folder</li>
+                <li>The extension icon will appear in your browser toolbar</li>
+            </ol>
+            <p>Requirements: Chrome, Edge, or any Chromium-based browser with browser notification permissions.</p>
+            <img src="../img/chromium_extension.jpg" alt="Chromium Extension UI">
+            <img src="../img/chromium_extension_screenshot1.jpg" alt="Screenshot 1">
+            <img src="../img/chromium_extension_screenshot2.jpg" alt="Screenshot 2">
+        </div>
+
+        <h2>Privacy and Permissions</h2>
+        <p>Desktop app: runs locally and does not send data by default.</p>
+        <p>Extension: stores your settings locally and only requests needed permissions. See the <a href="../ChromiumExtension/PRIVACY.md">Privacy Policy</a>.</p>
+
+        <p><a href="https://github.com/mcagriaksoy/20_20_20_eye_strain/releases/"><img src="https://img.shields.io/github/tag/mcagriaksoy/20_20_20_eye_strain?include_prereleases=&sort=semver&color=blue" alt="Version"></a></p>
+    </div>
+</body>
+</html>
