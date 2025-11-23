@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "20-20-20 Eye Strain Reminder",
   "short_name": "Eye Reminder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Reminds you to take a break every 20 minutes for your eyes using the 20-20-20 rule.",
   "author": "mcagriaksoy",
   "homepage_url": "https://github.com/mcagriaksoy",
